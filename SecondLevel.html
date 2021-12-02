@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Marbls/second level</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/mainOfSecondLevel.css">
+  <link rel="shortcut icon" href="img/faviconOfSG.ico">
 </head>
 <body>
 
+<script src="js/computerClass.js"></script>
+<script src="js/secondLevelGamePlay.js"></script>
+
+<div id="consoleWindow">
+  <h1>Console crypter ver 1.0 </h1>
+  <div id="consoleLines">
+    <div id="endline"></div>
+  </div>
+  <div id="inputBlock" class="inputLine">
+    <span class="slashes" id="slash">></span>
+    <span hidden class="slashes" id="blinkingSlash">></span>
+    <input onkeypress="handle(event)" oninput="return withoutCyr(this);" type="text" id="inputLine">
+  </div>
+  <div id="face">>_<</div>
+</div>
 </body>
 </html>

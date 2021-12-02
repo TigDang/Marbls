@@ -10,7 +10,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-@import "mainOfMain.css";
+@import "mainOfFirstLevel.css";
 
 html {
   color: #222;

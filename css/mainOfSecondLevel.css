@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/*
+https://colorscheme.ru/#4451T9L7nhoJm
+*/
+
+*{
+  filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
+  font-family: 'VT323', monospace;
+  color: white;
+  font-size: large;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+h1{
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #B4B2C4;
+}
+h2{
+  color: #A6A3C4;
+}
+
+h3{
+  color: #A0B1C3;
+}
+
+#face{
+  color: #A6A3C4;
+  position: absolute;
+  right: 0;
+  padding: 20px;
+  margin: 20px;
+  font-size: 100px;
+  background-color: #151e28;
+}
+
+body{
+  background-color: black;
+}
+
+#consoleWindow{
+  width: 700px;
+  height: 300px;
+  background-color: #10171F;
+  padding: 10px;
+  margin: 20px;
+  border: #10171F 10px;
+  border-radius: 10px;
+  animation: medBlinking;
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lowBlinking {
+  0%,20%,40%,60%,80%{
+    filter: brightness(100%);
+  }
+  10%,30%,50%,70%,90%{
+    filter: brightness(97%);
+  }
+}
+
+@keyframes medBlinking {
+  0%,20%,40%,60%,80%{
+    filter: brightness(100%);
+  }
+  10%,30%,50%,70%,90%{
+    filter: brightness(90%);
+  }
+}
+
+@keyframes strongBlinking {
+  0%,20%,40%,60%,80%{
+    filter: brightness(100%);
+  }
+  10%,30%,50%,70%,90%{
+    filter: brightness(60%);
+  }
+}
+
+#consoleLines{
+  display: block;
+  position: absolute;
+  bottom: 40px;
+  width: 530px;
+  height: 200px;
+  overflow-x: scroll;
+}
+
+.computerline{
+  color: #A6A3C4;
+  display: inline-block;;
+  border-bottom: #505056 solid 1px;
+  height: 30px;
+  width: 500px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.playerline{
+  color: white;
+  display: inline-block;
+  border-top: #505056 solid 1px;
+  border-bottom: #505056 solid 1px;
+  width: 500px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.inputLine{
+  position: absolute;
+  color: #A6A3C4;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  bottom: 0;
+  margin: 10px;
+}
+
+.inputLine input[type='text']{
+  color: white;
+  display: inline;
+  text-decoration: none;
+  outline:none;
+  outline-offset: 0;
+  background-color: #10171F;
+  border: none;
+  filter: drop-shadow(0px 0px 0px #10171F);
+}
+
+.shashes{
+  position: absolute;
+  display: inline-block;
+  left: 0;
+}

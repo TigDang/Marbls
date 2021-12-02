@@ -8,7 +8,7 @@ class Player{
   }
   makeBid(){
     let min = 1;
-    let max = this.#countOfMarbles;
+    let max = 14 - this.#countOfMarbles;
     return Math.floor(Math.random() * (max - min)) + min + 1; //Максимум не включается, минимум включается
   }
   makeAssump(){
