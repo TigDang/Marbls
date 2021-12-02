@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Marbls/first level</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <div id="startMenu">
+    Привет, игрок <br/>
+    Сейчас тебе предстоит сыграть в МАРБЛС. <br/>
+    Тебе предстоит загадать число от 1 до 7, положив их в кулак. <br/>
+    А я попытаюсь отгадать, чётное там число, или нет.<br/>
+    Если угадаю - тебе придётся отдать то количество шариков, <br/> которое я положил себе в кулак.<br/>
+    Если нет - то я отдам их тебе.<br/>
+    Потом поменяемся.
+    <br/>
+    <input id="playerName" type="text" placeholder="Имя сюда!"> <br/>
+    <input class="button" id="startButton" type="button" onclick="HideStartMenu()" value="Старт">
+  </div>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/playerClass.js"></script>
+
+  <div id="inputsNoutputs">
+    <label id="mainLabel">Противник делает ставку</label><br/>
+    <input hidden onclick="Step1x3()" type="button" id="whenPlayerChooseNum" value="Продолжить">
+    <input hidden onclick="Step2x1()" type="button" id="nextRound" value="Новый раунд"><br/>
+    <input hidden onclick="Step2x2()" type="button" id="whenPlayerChooseBid" value="Ставка сделана">
+    <input onclick="Step2x4E()" hidden type="button" id="evenNum" value="Чётное">
+    <input onclick="Step2x4O()" hidden type="button" id="oddNum" value="Нечётное">
+  </div>
+
+  <span class="enemyLabels">
+    Противник: <label id="enemyLabel">...</label> <br/>
+  </span>
+  <label hidden id="enemyBetNNum"></label>
+  <span class="playerLabels">
+    Ваш счёт: <label id="playerLabel"></label>
+  </span>
+
+  <input hidden type="number" id="presNumORbid" placeholder="" min="1" value="1"><br/>
+
+  <span>
+    <div id="rightHand" class="hands">
+      <div id="rClosedHand" hidden="">
+        <svg width="522" height="306" viewBox="0 0 522 306" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M112 83.5H15.5L9 260.5H166L215 270.5C232.667 277 269.8 290.9 277 294.5C284.2 298.1 389.333 293 441 290L457 270.5L463 251L457 231.5H479L496.5 220L504.5 192.5L496.5 175.5V158.5L504.5 139V118L496.5 102L504.5 88.5V71L496.5 57.5C493.667 55.1667 486.2 50.5 479 50.5H441H401V31L390.5 18H357.5H330L277 36.5L231 57.5L202.5 78H171.5L112 83.5Z"
+    fill="white"></path>
+  <path d="M406 49.6498V111.65H477C519.5 111.65 516 49.6498 477 49.6498H406Z" fill="white"></path>
+  <path d="M406 111.65V168.65H477C519.5 168.65 518.525 111.65 477 111.65H406Z" fill="white"></path>
+  <path d="M477 168.65H406H376C333 168.65 333 231.65 376 231.65H431H477C514 231.65 513 168.65 477 168.65Z"
+        fill="white"></path>
+  <path
+    d="M406 49.6498C406 17.6498 386.714 15.6497 376 15.6497C369.5 15.6497 363.602 6.52165 311 22.1498C242 42.6498 226.5 81.1498 175 81.1498H13V260.15H175C212.5 260.15 245 293.15 292 293.15H431C477 293.15 474 234.65 431 231.65M406 49.6498C406 70.0498 406 136.15 406 168.65M406 49.6498V111.65M406 49.6498H477C516 49.6498 519.5 111.65 477 111.65M406 168.65H477M406 168.65H376M406 168.65V111.65M477 168.65C519.5 168.65 518.525 111.65 477 111.65M477 168.65C513 168.65 514 231.65 477 231.65H431M477 111.65C439.5 111.65 422 111.65 406 111.65M477 111.65H406M431 231.65H376C333 231.65 333 168.65 376 168.65M376 168.65C362.5 157.65 339 127.15 338.5 93.6498C339.201 140.65 290.833 164.483 268 168.65"
+    stroke="black" stroke-width="25"></path>
+  </svg>
+      </div>
+      <div id="rOpenedHand">
+        <svg width="730" height="391" viewBox="0 0 730 391" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M391.5 32L369.5 66L354.5 84C335.667 91.5 296.6 106.9 291 108.5C284 110.5 238 139 233.5 141C229.9 142.6 200 155.333 185.5 161.5C164.5 159.167 119.5 154.9 107.5 156.5C95.5 158.1 42.8333 160.5 18 161.5L12 278.5L21 340H197.5L233.5 357.5L291.5 373H548.5L580 364.5L587 352V326L595 313L651 306L669 294.5L674.5 269V253C678 251.5 685.5 248.2 687.5 247C690 245.5 702 242 708 237.5C714 233 708 226 708 221V202.5C701 199.833 686 194.7 682 195.5C678 196.3 649 188.167 635 184L651 170.5C652.333 166.833 654.2 157 651 147C647 134.5 658.5 132 640 126C621.5 120 520 126 514 126H429C432 114.333 438.7 89.5 441.5 83.5C445 76 449.5 60.5 449.5 47V17.5C449.5 9.9 435.833 14.3333 429 17.5H413L391.5 32Z"
+        fill="white"></path>
+      <g filter="url(#filter0_d_10_3)">
+        <path
+          d="M458 308.824L481 308.758C473.333 308.758 485.2 308.758 562 308.758M272 245.758C294.833 241.591 343 211.108 385.5 165.108C526.5 19.1081 411.5 -24.8919 380 46.6079C376.474 54.6119 380 77.1079 321.5 99.6079C254.317 125.448 230.5 158.258 179 158.258H17V337.258H179C216.5 337.258 249 370.258 296 370.258H435H562C604 370.258 601.5 308.758 562 308.758M562 308.758L639.5 308.824C689.5 308.824 687.9 245.824 639.5 245.824M639.5 245.824C591.1 245.824 522.333 245.891 468 245.891M639.5 245.824L679 245.891C724 245.891 724.2 187.941 679 188.741C664.627 188.996 657.424 188.947 627 188.991M458 188.741C515.971 188.969 561.746 189.083 627 188.991M627 188.991C666.5 188.866 667 127.067 627 127.067C570.987 127.067 466.018 126.608 418.518 127.108"
+          stroke="black" stroke-width="25"></path>
+      </g>
+      <defs>
+        <filter id="filter0_d_10_3" x="0.5" y="0.515015" width="728.825" height="390.243" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                         result="hardAlpha"></feColorMatrix>
+          <feOffset dy="4"></feOffset>
+          <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+          <feComposite in2="hardAlpha" operator="out"></feComposite>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_3"></feBlend>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_3" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+      </div>
+    </div>
+    <div id="leftHand" class="hands">
+      <div id="lClosedHand" hidden="">
+        <svg width="522" height="306" viewBox="0 0 522 306" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M112 83.5H15.5L9 260.5H166L215 270.5C232.667 277 269.8 290.9 277 294.5C284.2 298.1 389.333 293 441 290L457 270.5L463 251L457 231.5H479L496.5 220L504.5 192.5L496.5 175.5V158.5L504.5 139V118L496.5 102L504.5 88.5V71L496.5 57.5C493.667 55.1667 486.2 50.5 479 50.5H441H401V31L390.5 18H357.5H330L277 36.5L231 57.5L202.5 78H171.5L112 83.5Z"
+    fill="white"></path>
+  <path d="M406 49.6498V111.65H477C519.5 111.65 516 49.6498 477 49.6498H406Z" fill="white"></path>
+  <path d="M406 111.65V168.65H477C519.5 168.65 518.525 111.65 477 111.65H406Z" fill="white"></path>
+  <path d="M477 168.65H406H376C333 168.65 333 231.65 376 231.65H431H477C514 231.65 513 168.65 477 168.65Z"
+        fill="white"></path>
+  <path
+    d="M406 49.6498C406 17.6498 386.714 15.6497 376 15.6497C369.5 15.6497 363.602 6.52165 311 22.1498C242 42.6498 226.5 81.1498 175 81.1498H13V260.15H175C212.5 260.15 245 293.15 292 293.15H431C477 293.15 474 234.65 431 231.65M406 49.6498C406 70.0498 406 136.15 406 168.65M406 49.6498V111.65M406 49.6498H477C516 49.6498 519.5 111.65 477 111.65M406 168.65H477M406 168.65H376M406 168.65V111.65M477 168.65C519.5 168.65 518.525 111.65 477 111.65M477 168.65C513 168.65 514 231.65 477 231.65H431M477 111.65C439.5 111.65 422 111.65 406 111.65M477 111.65H406M431 231.65H376C333 231.65 333 168.65 376 168.65M376 168.65C362.5 157.65 339 127.15 338.5 93.6498C339.201 140.65 290.833 164.483 268 168.65"
+    stroke="black" stroke-width="25"></path>
+  </svg>
+      </div>
+      <div id="lOpenedHand">
+        <svg width="730" height="391" viewBox="0 0 730 391" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M391.5 32L369.5 66L354.5 84C335.667 91.5 296.6 106.9 291 108.5C284 110.5 238 139 233.5 141C229.9 142.6 200 155.333 185.5 161.5C164.5 159.167 119.5 154.9 107.5 156.5C95.5 158.1 42.8333 160.5 18 161.5L12 278.5L21 340H197.5L233.5 357.5L291.5 373H548.5L580 364.5L587 352V326L595 313L651 306L669 294.5L674.5 269V253C678 251.5 685.5 248.2 687.5 247C690 245.5 702 242 708 237.5C714 233 708 226 708 221V202.5C701 199.833 686 194.7 682 195.5C678 196.3 649 188.167 635 184L651 170.5C652.333 166.833 654.2 157 651 147C647 134.5 658.5 132 640 126C621.5 120 520 126 514 126H429C432 114.333 438.7 89.5 441.5 83.5C445 76 449.5 60.5 449.5 47V17.5C449.5 9.9 435.833 14.3333 429 17.5H413L391.5 32Z"
+        fill="white"></path>
+      <g filter="url(#filter0_d_10_3)">
+        <path
+          d="M458 308.824L481 308.758C473.333 308.758 485.2 308.758 562 308.758M272 245.758C294.833 241.591 343 211.108 385.5 165.108C526.5 19.1081 411.5 -24.8919 380 46.6079C376.474 54.6119 380 77.1079 321.5 99.6079C254.317 125.448 230.5 158.258 179 158.258H17V337.258H179C216.5 337.258 249 370.258 296 370.258H435H562C604 370.258 601.5 308.758 562 308.758M562 308.758L639.5 308.824C689.5 308.824 687.9 245.824 639.5 245.824M639.5 245.824C591.1 245.824 522.333 245.891 468 245.891M639.5 245.824L679 245.891C724 245.891 724.2 187.941 679 188.741C664.627 188.996 657.424 188.947 627 188.991M458 188.741C515.971 188.969 561.746 189.083 627 188.991M627 188.991C666.5 188.866 667 127.067 627 127.067C570.987 127.067 466.018 126.608 418.518 127.108"
+          stroke="black" stroke-width="25"></path>
+      </g>
+      <defs>
+        <filter id="filter0_d_10_3" x="0.5" y="0.515015" width="728.825" height="390.243" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                         result="hardAlpha"></feColorMatrix>
+          <feOffset dy="4"></feOffset>
+          <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+          <feComposite in2="hardAlpha" operator="out"></feComposite>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_3"></feBlend>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_3" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+      </div>
+    </div>
+  </span>
+
+  <script src="js/gamePlay.js"></script>
+</body>
+
+</html>
