@@ -47,6 +47,7 @@ body{
 }
 
 #consoleWindow{
+  position: fixed;
   width: 700px;
   height: 300px;
   background-color: #10171F;
@@ -136,6 +137,7 @@ body{
 }
 
 .inputLine input[type='text']{
+  position: relative;
   color: white;
   display: inline;
   text-decoration: none;
