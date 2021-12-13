@@ -34,7 +34,7 @@ h3{
 
 #face{
   color: #A6A3C4;
-  position: absolute;
+  position: fixed;
   right: 0;
   padding: 20px;
   margin: 20px;
@@ -97,11 +97,11 @@ body{
 
 #consoleLines{
   display: block;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   width: 530px;
   height: 200px;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .computerline{
@@ -125,7 +125,7 @@ body{
 }
 
 .inputLine{
-  position: absolute;
+  position: fixed;
   color: #A6A3C4;
   display: block;
   height: 30px;
@@ -144,10 +144,4 @@ body{
   background-color: #10171F;
   border: none;
   filter: drop-shadow(0px 0px 0px #10171F);
-}
-
-.shashes{
-  position: absolute;
-  display: inline-block;
-  left: 0;
 }
