@@ -42,7 +42,7 @@ function HideStartMenu(){
 }
 
 var Enemy = new Player("Enemy", true);
-var APlayer = new Player(document.getElementById("playerName").value, false);
+var APlayer = new Player("Player", false);
 document.getElementById('playerLabel').innerText=APlayer.showMarbls();
 
 function Step1x1(){
