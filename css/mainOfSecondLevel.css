@@ -11,6 +11,10 @@ https://colorscheme.ru/#4451T9L7nhoJm
   font-size: large;
 }
 
+body{
+  zoom: 200%;
+}
+
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -50,9 +54,18 @@ body{
   margin: 20px;
   border: #10171F 10px;
   border-radius: 10px;
-  animation: medBlinking;
+  animation: lowBlinking;
   animation-duration: 0.4s;
   animation-iteration-count: infinite;
+}
+
+@keyframes noBlinking {
+  from{
+    filter: brightness(10%);
+  }
+  to{
+    filter: brightness(10%);
+  }
 }
 
 @keyframes lowBlinking {
@@ -95,6 +108,7 @@ body{
   color: #A6A3C4;
   display: inline-block;;
   border-bottom: #505056 solid 1px;
+  border-top: #505056 solid 1px;
   height: 30px;
   width: 500px;
   line-height: 30px;
