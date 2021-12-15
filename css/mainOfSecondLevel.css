@@ -4,146 +4,174 @@
 https://colorscheme.ru/#4451T9L7nhoJm
 */
 
-*{
-  filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
-  font-family: 'VT323', monospace;
-  color: white;
-  font-size: large;
-}
-
-body{
-  zoom: 200%;
-}
-
-::-webkit-scrollbar {
-  width: 0;
-}
-
-h1{
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #B4B2C4;
-}
-h2{
-  color: #A6A3C4;
-}
-
-h3{
-  color: #A0B1C3;
-}
-
-#face{
-  color: #A6A3C4;
-  position: fixed;
-  right: 0;
-  padding: 20px;
-  margin: 20px;
-  font-size: 100px;
-  background-color: #151e28;
-}
-
 body{
   background-color: black;
 }
 
-#consoleWindow{
-  position: fixed;
-  width: 700px;
-  height: 300px;
-  background-color: #10171F;
-  padding: 10px;
-  margin: 20px;
-  border: #10171F 10px;
-  border-radius: 10px;
-  animation: lowBlinking;
-  animation-duration: 0.4s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes noBlinking {
-  from{
-    filter: brightness(10%);
+@media only screen and (max-width: 1000px) {
+  *{
+    filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
+    font-family: 'VT323', monospace;
+    color: white;
+    font-size: large;
   }
-  to{
-    filter: brightness(10%);
+  #consoleWindow{
+    visibility: hidden;
+  }
+  #warning-massage{
+    left: 10vw;
+    visibility: visible;
+    position: fixed;
+    font-size: 15vh;
+  }
+  #consoleLines, #inputBlock, h1{
+    visibility: hidden;
   }
 }
 
-@keyframes lowBlinking {
-  0%,20%,40%,60%,80%{
-    filter: brightness(100%);
+@media only screen and (min-width: 1000px) {
+  *{
+    filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
+    font-family: 'VT323', monospace;
+    color: white;
+    font-size: large;
   }
-  10%,30%,50%,70%,90%{
-    filter: brightness(97%);
+
+  body{
+    zoom: 200%;
   }
-}
 
-@keyframes medBlinking {
-  0%,20%,40%,60%,80%{
-    filter: brightness(100%);
+  #warning-massage{
+    visibility: hidden;
   }
-  10%,30%,50%,70%,90%{
-    filter: brightness(90%);
+
+  ::-webkit-scrollbar {
+    width: 0;
   }
-}
 
-@keyframes strongBlinking {
-  0%,20%,40%,60%,80%{
-    filter: brightness(100%);
+  h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #B4B2C4;
   }
-  10%,30%,50%,70%,90%{
-    filter: brightness(60%);
+  h2{
+    color: #A6A3C4;
   }
-}
 
-#consoleLines{
-  display: block;
-  position: fixed;
-  bottom: 40px;
-  width: 530px;
-  height: 200px;
-  overflow-x: hidden;
-}
+  h3{
+    color: #A0B1C3;
+  }
 
-.computerline{
-  color: #A6A3C4;
-  display: inline-block;;
-  border-bottom: #505056 solid 1px;
-  border-top: #505056 solid 1px;
-  height: 30px;
-  width: 500px;
-  line-height: 30px;
-  vertical-align: middle;
-}
-.playerline{
-  color: white;
-  display: inline-block;
-  border-top: #505056 solid 1px;
-  border-bottom: #505056 solid 1px;
-  width: 500px;
-  line-height: 30px;
-  vertical-align: middle;
-}
+  #face{
+    color: #A6A3C4;
+    position: fixed;
+    right: 0;
+    padding: 20px;
+    margin: 20px;
+    font-size: 100px;
+    background-color: #151e28;
+  }
 
-.inputLine{
-  position: fixed;
-  color: #A6A3C4;
-  display: block;
-  height: 30px;
-  line-height: 30px;
-  vertical-align: middle;
-  bottom: 0;
-  margin: 10px;
-}
+  #consoleWindow{
+    position: fixed;
+    width: 700px;
+    height: 300px;
+    background-color: #10171F;
+    padding: 10px;
+    margin: 20px;
+    border: #10171F 10px;
+    border-radius: 10px;
+    animation: lowBlinking;
+    animation-duration: 0.4s;
+    animation-iteration-count: infinite;
+  }
 
-.inputLine input[type='text']{
-  position: relative;
-  color: white;
-  display: inline;
-  text-decoration: none;
-  outline:none;
-  outline-offset: 0;
-  background-color: #10171F;
-  border: none;
-  filter: drop-shadow(0px 0px 0px #10171F);
+  @keyframes noBlinking {
+    from{
+      filter: brightness(10%);
+    }
+    to{
+      filter: brightness(10%);
+    }
+  }
+
+  @keyframes lowBlinking {
+    0%,20%,40%,60%,80%{
+      filter: brightness(100%);
+    }
+    10%,30%,50%,70%,90%{
+      filter: brightness(97%);
+    }
+  }
+
+  @keyframes medBlinking {
+    0%,20%,40%,60%,80%{
+      filter: brightness(100%);
+    }
+    10%,30%,50%,70%,90%{
+      filter: brightness(90%);
+    }
+  }
+
+  @keyframes strongBlinking {
+    0%,20%,40%,60%,80%{
+      filter: brightness(100%);
+    }
+    10%,30%,50%,70%,90%{
+      filter: brightness(60%);
+    }
+  }
+
+  #consoleLines{
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    width: 530px;
+    height: 200px;
+    overflow-x: hidden;
+  }
+
+  .computerline{
+    color: #A6A3C4;
+    display: inline-block;;
+    border-bottom: #505056 solid 1px;
+    border-top: #505056 solid 1px;
+    height: 30px;
+    width: 500px;
+    line-height: 30px;
+    vertical-align: middle;
+  }
+  .playerline{
+    color: white;
+    display: inline-block;
+    border-top: #505056 solid 1px;
+    border-bottom: #505056 solid 1px;
+    width: 500px;
+    line-height: 30px;
+    vertical-align: middle;
+  }
+
+  .inputLine{
+    position: fixed;
+    color: #A6A3C4;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    bottom: 0;
+    margin: 10px;
+  }
+
+  .inputLine input[type='text']{
+    position: relative;
+    color: white;
+    display: inline;
+    text-decoration: none;
+    outline:none;
+    outline-offset: 0;
+    background-color: #10171F;
+    border: none;
+    filter: drop-shadow(0px 0px 0px #10171F);
+  }
+
 }
