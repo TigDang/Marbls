@@ -21,8 +21,10 @@ body{
   #warning-massage{
     left: 10vw;
     visibility: visible;
-    position: fixed;
+    position: absolute;
     font-size: 15vh;
+    z-index: 100;
+    display: block;
   }
   #consoleLines, #inputBlock, h1{
     visibility: hidden;
