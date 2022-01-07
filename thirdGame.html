@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag words, please</title>
+
+  <link rel="stylesheet" href="css/mainOfThird.css">
+</head>
+<body>
+<!-- Add your site or application content here -->
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/writingCookies.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+<div class="backLabel">Score = <div id="score"></div></div>
+<div class="backLabel" id="timingLabel"></div>
+
+<div hidden id="gameOverLabel" class="backLabel">Game over</div>
+
+<div id="gameField">
+  <div hidden id="questEthalon" class="questBlock" ondragstart="onDragStart(event);" ondrop="onDrop(event);" draggable="true" ondragover="onDragOver(event);"></div>
+  <div hidden id="ansEthalon" class="answerBlock" ondragstart="onDragStart(event);" ondrop="onDrop(event);" draggable="true" ondragover="onDragOver(event);"></div>
+</div>
+
+</body>
+<script src="js/gameModule.js"></script>
+<script src="js/main.js"></script>
+</html>

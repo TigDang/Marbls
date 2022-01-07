@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+@font-face {
+  font-family: Pixar;
+  src: url("pixar.otf") format("opentype");
+}
+
 /*
 https://colorscheme.ru/#4451T9L7nhoJm
 */
@@ -11,7 +16,7 @@ body{
 @media only screen and (max-width: 1000px) {
   *{
     filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
-    font-family: 'VT323', monospace;
+    font-family: Pixar;
     color: white;
     font-size: large;
   }
@@ -34,9 +39,9 @@ body{
 @media only screen and (min-width: 1000px) {
   *{
     filter: blur(0.2px) drop-shadow(2px 0px 1px #2e2d3c);
-    font-family: 'VT323', monospace;
+    font-family: Pixar;
     color: white;
-    font-size: large;
+    /*font-size: large;*/
   }
 
   body{

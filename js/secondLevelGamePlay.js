@@ -71,7 +71,7 @@ function ToggleInputLine(){
 
 function WriteLine(text, asComputer = true){
   var newLine = document.createElement('div');
-  newLine.innerText=text;
+  newLine.innerHTML=text;
   if (asComputer){
     newLine.className='computerline';
   }
@@ -87,37 +87,36 @@ function WriteLine(text, asComputer = true){
 function StartGame(){
   document.getElementById('face').hidden=false;
   document.getElementById('face').innerText=MComputer.showMood();
-  WriteLine('Hello, Mr.Meat! Can you help me?',true);
+  WriteLine('Привет! Можешь ли ты мне помочь?',true);
   setTimeout(Step1, 3000);
 }
 
 function ShowConsole(){
   document.getElementById('consoleWindow').hidden=false;
-  setTimeout(WriteLine, 100, 'Send "CHANGE THEME" to change theme');
-  setTimeout(WriteLine, 200, 'Send "START" to start');
-  setTimeout(WriteLine, 300, '!Only english keyboard layout!');
+  setTimeout(WriteLine, 100, 'Напиши "CHANGE THEME" для смены темы');
+  setTimeout(WriteLine, 200, 'Напиши "START" чтобы начать');
 }
 
 //Игровой процесс
 setTimeout(ShowConsole, 999);
 
 function Step1(){
-  WriteLine('I need to decrypt messages sent to me by other computers.', true);
+  WriteLine('Мне нужно перевести сообщения, поступившие от других компьютеров.', true);
   setTimeout(Step2, 1000)
 }
 
 function Step2(){
-  WriteLine('So let\'s start. That\'s will be easy: ' + easyCrypt, true);
+  WriteLine('Нууу давай начнём. Переведи, это должно быть просто: ' + easyCrypt, true);
   ToggleInputLine();
 }
 
 function Step2I(input){
   if (SimpleCrypt(easyCrypt)===input.toLowerCase()){
-    WriteLine('True. You are right.', true);
+    WriteLine('Правильно.', true);
     MComputer.makeMoodGood();
   }
   else {
-    WriteLine('No. No way', true);
+    WriteLine('Нет, неправильно', true);
     MComputer.makeMoodBad();
   }
   isGameStarted = 2;
@@ -126,18 +125,18 @@ function Step2I(input){
 }
 
 function Step3(){
-  WriteLine('Ok. Okay. New word. You will encrypt: ' + mediumCrypt + '.', true);
-  WriteLine('I think you are need alphabet.',true);
+  WriteLine('Окей, теперь средняя сложность: ' + mediumCrypt + '.', true);
+  WriteLine('(Тебе понадобится алфавит)',true);
   ToggleInputLine();
 }
 
 function Step3I(input){
   if (MediumCrypt(mediumCrypt, true)===input){
-    WriteLine('Yes. That is right.', true);
+    WriteLine('Да! Верно', true);
     MComputer.makeMoodGood();
   }
   else {
-    WriteLine('No! Noo!', true);
+    WriteLine('Нееет!', true);
     MComputer.makeMoodBad();
   }
   isGameStarted = 3;
@@ -146,18 +145,18 @@ function Step3I(input){
 }
 
 function Step4(){
-  WriteLine('Next: ' + strongCrypt + '.', true);
-  WriteLine('That will be strong.',true);
+  WriteLine('Следующий: ' + strongCrypt + '.', true);
+  WriteLine('Оо, это будет трудно.',true);
   ToggleInputLine();
 }
 
 function Step4I(input){
   if (StrongCrypt(strongCrypt, true)===input){
-    WriteLine('Yeah! Hurray!', true);
+    WriteLine('Верноо! Даа!', true);
     MComputer.makeMoodGood();
   }
   else {
-    WriteLine('Oh.. No. Wrong.', true);
+    WriteLine('Что ж.. Не правильно', true);
     MComputer.makeMoodBad();
   }
   isGameStarted = 4;
@@ -166,34 +165,42 @@ function Step4I(input){
 }
 
 function GameOver(){
+  Users[POINTER].score2=MComputer.mood;
+  setCookie('users', JSON.stringify(Users));
+  console.log('Очки игрока '+Users[POINTER].nickname+ ' за вторую игру:' + Users[POINTER].score2);
   ToggleInputLine();
   if (MComputer.mood!==-3){
-    WriteLine('That is it. Game is over, so...', true);
+    WriteLine('На этом всё. Переводить больше не надо. А насчёт тебя...', true);
   }
+  setTimeout(NextLevel, 3500);
   switch (MComputer.mood) {
     case 0:
-      WriteLine('Not bad but not good. Average. Thank you to play',true);
+      WriteLine('Не плохо но и не хорошо. Средне. Спасибо за игру',true);
       break;
     case 1:
-      WriteLine('Exellent! Great! Thank you very much',true);
+      WriteLine('Вау! Молодец! Круто!',true);
       break;
     case -1:
-      WriteLine('Too much wrongs. Bad. But thank you to try',true);
+      WriteLine('Слишком много ошибок. Плохо. Но спасибо за попытку',true);
       break;
     case -2:
-      WriteLine('Woah!! You are really nonperpective piece of meat',true);
+      WriteLine('Вау! Настолько плохо, что я удивлён',true);
       break;
     case 2:
-      WriteLine('Excellent! Great! Thank you very much',true);
+      WriteLine('Превосходно! Велико! Спасибо тебе большое',true);
       break;
     case 3:
-      WriteLine('Whoaaahh! Fully great! Thank you very much!!!',true);
+      WriteLine('ВАУ! Всё правильно! Большое спасибо!!!',true);
       break;
     default:
-      WriteLine('BAD BAD BAD BAD!!! GO AWAY!',true);
+      WriteLine('НЕТ НЕТ НЕТ НЕТТТ!!! УЖАСНО, УХОДИ!',true);
       setTimeout(TurnOffTheConsole, 3000);
       break;
   }
+}
+
+function NextLevel(){
+  WriteLine('<a href="thirdGame.html">СЛЕДУЮЩАЯ ИГРА</a>');
 }
 
 function TurnOffTheConsole(){
