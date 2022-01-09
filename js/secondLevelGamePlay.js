@@ -101,7 +101,7 @@ function ShowConsole(){
 setTimeout(ShowConsole, 999);
 
 function Step1(){
-  WriteLine('Мне нужно перевести сообщения, поступившие от других компьютеров.', true);
+  WriteLine('Мне нужно перевести сообщения от других компьютеров.', true);
   setTimeout(Step2, 1000)
 }
 
