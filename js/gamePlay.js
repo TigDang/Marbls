@@ -4,6 +4,7 @@ function FinishOfGame(text){
   askingWindow.innerText=text;
   askingWindow.innerHTML+="<br/><br/><a  href='SecondLevel.html'>Следующий уровень</a>"
   document.body.prepend(askingWindow);
+  POINTER=0;
   Users[POINTER].score1=APlayer.showMarbls();
   setCookie('users', JSON.stringify(Users));
   console.log('Очки игрока '+Users[POINTER].nickname+ ' за первую игру:' + Users[POINTER].score1);

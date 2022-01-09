@@ -165,6 +165,7 @@ function Step4I(input){
 }
 
 function GameOver(){
+  POINTER=0;
   Users[POINTER].score2=MComputer.mood;
   setCookie('users', JSON.stringify(Users));
   console.log('Очки игрока '+Users[POINTER].nickname+ ' за вторую игру:' + Users[POINTER].score2);
