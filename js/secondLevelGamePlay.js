@@ -106,6 +106,7 @@ function Step1(){
 }
 
 function Step2(){
+  document.getElementById('levelLabel').innerText='уровень 1 / 3';
   WriteLine('Нууу давай начнём. Переведи, это должно быть просто: ' + easyCrypt, true);
   ToggleInputLine();
 }
@@ -125,6 +126,7 @@ function Step2I(input){
 }
 
 function Step3(){
+  document.getElementById('levelLabel').innerText='уровень 2 / 3';
   WriteLine('Окей, теперь средняя сложность: ' + mediumCrypt + '.', true);
   WriteLine('(Тебе понадобится алфавит)',true);
   ToggleInputLine();
@@ -145,6 +147,7 @@ function Step3I(input){
 }
 
 function Step4(){
+  document.getElementById('levelLabel').innerText='уровень 3 / 3';
   WriteLine('Следующий: ' + strongCrypt + '.', true);
   WriteLine('Оо, это будет трудно.',true);
   ToggleInputLine();
@@ -210,5 +213,6 @@ function TurnOffTheConsole(){
   document.getElementById('consoleWindow').style.animationName='noBlinking';
   document.body.setAttribute('style', 'filter: invert(0%);');
   isGameStarted=0;
+  document.getElementById('gameoverLabel').hidden=false;
 }
 

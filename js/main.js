@@ -1,23 +1,48 @@
 //Make the DIV element draggagle:
 
-let time = 80;
+let time = 1;
 document.getElementById('timingLabel').innerText=time;
 
-setInterval(timing, 1000)
+var t = setInterval(timing, 1000)
 
 function timing(){
-  if (time<0){
-    Users[POINTER].score3=score;
+  if (time < 1) {
+    clearInterval(t);
+
+    var paras = document.getElementsByClassName('questBlock');
+
+    while (paras[0]) {
+      paras[0].parentNode.removeChild(paras[0]);
+    }
+
+    paras = document.getElementsByClassName('answerBlock');
+
+    while (paras[0]) {
+      paras[0].parentNode.removeChild(paras[0]);
+    }
+
+    Users[POINTER].score3 = score;
     setCookie('users', JSON.stringify(Users));
-    console.log('Очки игрока '+Users[POINTER].nickname+ ' за третью игру:' + Users[POINTER].score3);
-    alert('ИТОГИ \n Игрок ' + Users[POINTER].nickname +
-      '\n Очки за первую игру: ' + Users[POINTER].score1 +
-      '\n Очки за вторую игру: ' + Users[POINTER].score2 +
-      '\n Очки за третью игру: ' + Users[POINTER].score3);
-  }
-  else {
+
+    let dialog = document.getElementById('endingDialog');
+    dialog.innerHTML += 'Игрок <ins>' + Users[POINTER].nickname +
+      '</ins> <br/> Очки за первую игру: ' + Users[POINTER].score1 +
+      '<br/> Очки за вторую игру: ' + Users[POINTER].score2 +
+      '<br/> Очки за третью игру: ' + Users[POINTER].score3;
+    dialog.showModal();
+
+    var type = 'data:application/octet-stream;base64, ';
+    var text = unescape(encodeURIComponent(dialog.innerText.replace('Скачать итоги','')));
+    var base = btoa(text);
+    var res = type + base;
+    document.getElementById('test').href = res;
+
+    console.log('Очки игрока ' + Users[POINTER].nickname + ' за третью игру:' + Users[POINTER].score3);
+
+    clearInterval(t);
+  } else {
     time--;
-    document.getElementById('timingLabel').innerText=time;
+    document.getElementById('timingLabel').innerText = time;
   }
 }
 
@@ -47,25 +72,27 @@ function onDrop(event) {
   console.log(library);
   console.log(draggableElement);
 
-  console.log(library.has(draggableElement.innerText));
+  if (dropzone.className!==draggableElement.className){
+    console.log(library.has(draggableElement.innerText));
 
-  if (library.get(draggableElement.innerText)===dropzone.innerText
-    || library.get(dropzone.innerText)===draggableElement.innerText) {
-    score++;
-    countScore();
-    dropzone.style.backgroundColor="#7109AA";
-  }
-  else {
-    dropzone.style.backgroundColor='#FF0000';
-  }
+    if (library.get(draggableElement.innerText)===dropzone.innerText
+      || library.get(dropzone.innerText)===draggableElement.innerText) {
+      score++;
+      countScore();
+      dropzone.style.backgroundColor="#7109AA";
+    }
+    else {
+      dropzone.style.backgroundColor='#FF0000';
+    }
 
-  draggableElement.remove();
-  event.dataTransfer.clearData();
-  setTimeout(removeDropzone, 2500, dropzone)
-  if (score===library.size-1){
-    clearInterval(createNewPairs)
-    document.body.style.backgroundColor='#FF80C8';
-    document.getElementById('gameOverLabel').hidden=false;
+    draggableElement.remove();
+    event.dataTransfer.clearData();
+    setTimeout(removeDropzone, 2500, dropzone)
+    if (score===library.size-1){
+      clearInterval(createNewPairs)
+      document.body.style.backgroundColor='#FF80C8';
+      document.getElementById('gameOverLabel').hidden=false;
+    }
   }
 }
 

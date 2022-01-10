@@ -93,6 +93,11 @@ body{
     animation-iteration-count: infinite;
   }
 
+  #gameoverLabel{
+    position: fixed;
+    z-index: -100;
+  }
+
   @keyframes noBlinking {
     from{
       filter: brightness(10%);

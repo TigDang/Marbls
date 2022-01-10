@@ -122,7 +122,6 @@ a{
 
 #startMenu{
   display: inline-block;
-  font-size: xxx-large;
   text-align: center;
   color: white;
   transition: 0.1s;
@@ -131,6 +130,11 @@ a{
   height: 100vh;
   width: 100vw;
   backdrop-filter: blur(6px) brightness(20%);
+  font-size: x-large;
+}
+
+#startMenu *{
+  zoom: 75%;
 }
 
 #askingWindow{
