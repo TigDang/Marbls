@@ -1,8 +1,8 @@
 //Make the DIV element draggagle:
 
-let time = 1;
+let time = 80;
 document.getElementById('timingLabel').innerText=time;
-
+POINTER=0;
 var t = setInterval(timing, 1000)
 
 function timing(){
@@ -21,7 +21,7 @@ function timing(){
       paras[0].parentNode.removeChild(paras[0]);
     }
 
-    Users[POINTER].score3 = score;
+    Users[0].score3 = score;
     setCookie('users', JSON.stringify(Users));
 
     let dialog = document.getElementById('endingDialog');
